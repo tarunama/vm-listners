@@ -1,28 +1,49 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="app">
+    <p>{{ clickCountText }}</p>  
+    <p>{{ clickMouseOverText }}</p>  
+    <child-component
+      @click="incrementClickCount()"
+      @mouseover="incrementMouseOverCount()"
+    ></child-component>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import ChildComponent from './components/ChildComponent.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    ChildComponent
+  },
+  computed: {
+    clickCountText() {
+      return `clickCount: ${this.clickCount}`
+    },
+    clickMouseOverText() {
+      return `mouseOverCount: ${this.mouseOverCount}`
+    }
+  },
+  data() {
+    return {
+      clickCount: 0,
+      mouseOverCount: 0
+    }
+  },
+  methods: {
+    incrementClickCount() {
+      this.clickCount++
+    },
+    incrementMouseOverCount() {
+      this.mouseOverCount++
+    }
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.app {
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
