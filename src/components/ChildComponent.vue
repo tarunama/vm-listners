@@ -1,10 +1,5 @@
 <template>
-  <button
-    @click="$emit('click')"
-    @mouseover="$emit('mouseover')"
-  >
-    button
-  </button>
+  <button v-on="$listeners">button</button>
 </template>
 
 <script>
